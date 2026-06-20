@@ -43,7 +43,7 @@ Customer types → Claude answers with context + tools
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/jarnhaus/huginn.git
+git clone https://github.com/MarekFish93/huginn.git
 cd huginn
 npm install
 ```
@@ -150,6 +150,26 @@ You don't need to use the demo UI. The only required pieces are:
 - `src/app/api/webhooks/telegram/route.ts` — Telegram webhook
 
 Copy these into your Next.js app, set the env vars, run the migration, register the webhook, done.
+
+---
+
+## Local development
+
+The chat UI and AI responses work out of the box with `npm run dev`. However, **Telegram webhooks require a public HTTPS URL** — Telegram cannot reach `localhost`.
+
+To test the full escalation flow locally, expose your dev server with a tunnel:
+
+```bash
+# Option A — ngrok (free tier works)
+ngrok http 3000
+# Copy the https://xxxx.ngrok.io URL → set as NEXT_PUBLIC_APP_URL in .env.local
+# Then re-run: npm run webhook:register
+
+# Option B — Cloudflare Tunnel (free, no account needed for quick tests)
+npx cloudflared tunnel --url http://localhost:3000
+```
+
+Everything except Telegram replies can be tested without a tunnel.
 
 ---
 

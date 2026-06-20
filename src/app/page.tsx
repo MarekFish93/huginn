@@ -36,7 +36,7 @@ export default function Home() {
           Try the demo →
         </Link>
         <a
-          href="https://github.com/jarnhaus/huginn"
+          href="https://github.com/MarekFish93/huginn"
           target="_blank"
           rel="noopener noreferrer"
           style={{
